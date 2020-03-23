@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MVVM</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="name">
+  <input type="text" v-model="student.code">
+  <div>{{name}}</div>
+  {{message}}
+  <ul>
+    <li>{{student.code}}</li>
+    <li>{{student.age}}</li>
+  </ul>
+  code: {{student.code}}
+  age: {{student.age}}
+</div>
+<!-- 浏览器还没有完全支持ES6模块，所以需要在导入模块时，在script标签中加“type = module” -->
+<script type="module">
+  import MVVM from './mvvm.js'
+
+  const vm = new MVVM({
+    el: '#app',
+    data: {
+      name: 'cuimm',
+      message: 'hello cuimm~',
+      student: {
+        code: '20078201045',
+        age: 19,
+      },
+    },
+  })
+</script>
+</body>
+</html>
