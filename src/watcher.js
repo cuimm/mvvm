@@ -1,4 +1,5 @@
 import CompileUtil from './compileUtil.js'
+import Dep from './dep.js'
 
 /*
 * 观察者的目的是：给需要观察的对象添加一个观察者，当数据变化时执行对应的方法
@@ -16,15 +17,16 @@ class Watcher {
     // 回调
     this.cb = cb
     // 初始值
-    this.value = CompileUtil.getValue(this.vm, this.expr)
+    this.value = this.getValue(this.vm, this.expr)
   }
-  update2(newValue, cb) {
-    if (this.value !== newValue) {
-      cb(newValue)
-    }
+  getValue() {
+    Dep.target = this
+    const value = CompileUtil.getValue(this.vm, this.expr)
+    Dep.target = null
+    return value
   }
   update() {
-    const newValue = CompileUtil.getValue(this.vm, this.expr)
+    const newValue = this.getValue(this.vm, this.expr)
     const oldValue = this.value
     if (newValue !== oldValue) {
       this.cb(newValue)

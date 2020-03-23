@@ -1,6 +1,5 @@
 import Compile from './compile.js'
 import Observer from './observer.js'
-import Watcher from './watcher.js'
 
 class MVVM {
   constructor(options) {
