@@ -12,17 +12,21 @@ class MVVM {
       // 模版编译
       new Compile(this.$el, this)
 
-      Object.keys(this.$data).forEach(key => {
-        Object.defineProperty(this, key, {
-          get() {
-            return this.$data[key]
-          },
-          set(val) {
-            this.$data[key] = val
-          },
-        })
-      })
+      // 代理$data
+      this.proxyData(this.$data)
     }
+  }
+  proxyData(data) {
+    Object.keys(data).forEach(key => {
+      Object.defineProperty(this, key, {
+        get() {
+          return data[key]
+        },
+        set(val) {
+          data[key] = val
+        },
+      })
+    })
   }
 }
 
