@@ -13,10 +13,19 @@ const CompileUtil = {
       return this.getValue(vm, args[1])
     })
   },
+  setValue(vm, expr, value) {
+    // vm.$data a.b.c value
+    const _expr = expr.split('.')
+    _expr.reduce((prev, next, currentIndex) => {
+      if (_expr.length - 1 === currentIndex) {
+        return prev[next] = value
+      }
+      return prev[next]
+    }, vm.$data)
+  },
   // 文本处理
   text(node, vm, expr) {
     const updateFn = this.updater['textUpdater']
-
     const value = expr.replace(/\{\{([^}]+)\}\}/g, (...args) => {
       // 监控文本节点里面每一个绑定的值 {{a}} {{b.c}}
       const _expr = args[1]
@@ -35,6 +44,10 @@ const CompileUtil = {
     new Watcher(vm, expr, (newValue) => {
       // 当值变化后会调用cb，将新值传递过来
       updateFn && updateFn(node, newValue)
+    })
+    node.addEventListener('input', (e) => {
+      const value = e.target.value
+      this.setValue(vm, expr, value)
     })
   },
   updater: {

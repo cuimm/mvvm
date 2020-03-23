@@ -11,6 +11,17 @@ class MVVM {
       new Observer(this.$data)
       // 模版编译
       new Compile(this.$el, this)
+
+      Object.keys(this.$data).forEach(key => {
+        Object.defineProperty(this, key, {
+          get() {
+            return this.$data[key]
+          },
+          set(val) {
+            this.$data[key] = val
+          },
+        })
+      })
     }
   }
 }
