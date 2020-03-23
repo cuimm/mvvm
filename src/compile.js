@@ -1,3 +1,5 @@
+import CompileUtil from './compileUtil.js'
+
 class Compile {
   constructor(el, vm) {
     this.el = this.isElementNode(el) ? el : document.querySelector(el)
@@ -73,40 +75,6 @@ class Compile {
     // 元素=1 属性=2 文本=3 注释=8 document=9 documentFragment=11
     return node.nodeType === 1
   }
-}
-
-const CompileUtil = {
-  getValue(vm, expr) {
-    // vm.$data.student.code  data[expr]
-    // return vm.$data[expr]
-    return expr.split('.').reduce((prev, next) => {
-      return prev[next]
-    }, vm.$data)
-  },
-  // 文本处理
-  text(node, vm, expr) {
-    expr = expr.replace(/\{\{([^}]+)\}\}/g, (...args) => {
-      const expr = args[1]
-      return this.getValue(vm, expr)
-    })
-    const updateFn = this.updater['textUpdater']
-    updateFn && updateFn(node, expr)
-  },
-  // 输入框处理
-  model(node, vm, expr) {
-    const updateFn = this.updater['modelUpdater']
-    updateFn && updateFn(node, this.getValue(vm, expr))
-  },
-  updater: {
-    // 文本框更新
-    textUpdater(node, value) {
-      node.textContent = value
-    },
-    // 输入框更新
-    modelUpdater(node, value) {
-      node.value = value
-    },
-  },
 }
 
 export default Compile
