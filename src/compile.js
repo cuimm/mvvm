@@ -83,17 +83,17 @@ const CompileUtil = {
       return prev[next]
     }, vm.$data)
   },
+  // 文本处理
   text(node, vm, expr) {
-    // 文本处理
-    const updateFn = this.updater['textUpdater']
     expr = expr.replace(/\{\{([^}]+)\}\}/g, (...args) => {
       const expr = args[1]
       return this.getValue(vm, expr)
     })
+    const updateFn = this.updater['textUpdater']
     updateFn && updateFn(node, expr)
   },
+  // 输入框处理
   model(node, vm, expr) {
-    // 输入框处理
     const updateFn = this.updater['modelUpdater']
     updateFn && updateFn(node, this.getValue(vm, expr))
   },
