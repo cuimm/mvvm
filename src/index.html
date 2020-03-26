@@ -8,16 +8,15 @@
 </head>
 <body>
 <div id="app">
-  <input type="text" v-model="name">
-  <input type="text" v-model="student.code">
-  <div>name：{{name}}</div>
-  <div>message：{{message}}</div>
+  message:<input type="text" v-model="message" />
+  student.name:<input type="text" v-model="student.name" />
   <ul>
-    <li>{{student.code}}</li>
-    <li>{{student.age}}</li>
+    <li>message: {{message}}</li>
+    <li>name: {{student.name}}</li>
+    <li>age: {{student.age}}</li>
+    <li>address: {{student.info.address}}</li>
   </ul>
-  <div>student.code: {{student.code}}</div>
-  <div>student.age: {{student.age}}</div>
+  {{message}}{{student.name}}{{student.info.address}}
 </div>
 <!-- 浏览器还没有完全支持ES6模块，所以需要在导入模块时，在script标签中加“type = module” -->
 <script type="module">
@@ -26,11 +25,13 @@
   window.vm = new MVVM({
     el: '#app',
     data: {
-      name: 'cuimm',
-      message: 'hello cuimm~',
+      message: 'Hello Lemon！',
       student: {
-        code: '20078201045',
-        age: 19,
+        name: 'cuimm～',
+        age: 18,
+        info: {
+          address: 'beijing',
+        },
       },
     },
   })
