@@ -21,7 +21,7 @@ class Watcher {
   }
   getValue() {
     Dep.target = this
-    const value = CompileUtil.getValue(this.vm, this.expr)
+    const value = CompileUtil.helper.getValue(this.vm, this.expr)
     Dep.target = null
     return value
   }

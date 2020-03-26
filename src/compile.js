@@ -2,7 +2,7 @@ import CompileUtil from './compileUtil.js'
 
 class Compile {
   constructor(el, vm) {
-    this.el = this.isElementNode(el) ? el : document.querySelector(el)
+    this.el = Compile.isElementNode(el) ? el : document.querySelector(el)
     this.vm = vm
     if (this.el) {
       // 元素能获取到才开始编译
@@ -29,7 +29,7 @@ class Compile {
     // 子节点（类数组）
     let childNodes = fragment.childNodes
     Array.from(childNodes).forEach(node => {
-      if (this.isElementNode(node)) {
+      if (Compile.isElementNode(node)) {
         // 元素节点 递归子节点 — 编译元素
         this.compileElement(node)
         this.compile(node)
@@ -46,7 +46,7 @@ class Compile {
     Array.from(attrs).forEach(attr => {
       // name=属性名(v-model v-text) value=属性值(student.code)
       const attrName = attr.name
-      if (this.isDirective(attrName)) {
+      if (Compile.isDirective(attrName)) {
         const expr = attr.value
         // 取到对应的值放到节点中 node this.vm.$data expr
         let [, type] = attrName.split('-')
@@ -67,11 +67,11 @@ class Compile {
   }
   /* 辅助方法 */
   // 判断是否是指令
-  isDirective(name) {
+  static isDirective(name) {
     return name.includes('v-')
   }
   // 判断是否是元素节点
-  isElementNode(node) {
+  static isElementNode(node) {
     // 元素=1 属性=2 文本=3 注释=8 document=9 documentFragment=11
     return node.nodeType === 1
   }
