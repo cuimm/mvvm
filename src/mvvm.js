@@ -27,6 +27,5 @@ class MVVM {
       })
     })
   }
-  test() {}
 }
 export default MVVM
