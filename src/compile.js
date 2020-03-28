@@ -23,7 +23,6 @@ class Compile {
     while (firstChild = el.firstChild) {
       fragment.appendChild(firstChild)
     }
-
     return fragment
   }
   compile(fragment) {
