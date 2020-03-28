@@ -18,12 +18,12 @@ class Compile {
   // 将DOM元素全部放入到文档碎片（内存）中
   node2Fragment(el) {
     // 创建文档碎片
-    var fragment = document.createDocumentFragment()
+    const fragment = document.createDocumentFragment()
     let firstChild
     while (firstChild = el.firstChild) {
       fragment.appendChild(firstChild)
     }
-    
+
     return fragment
   }
   compile(fragment) {
