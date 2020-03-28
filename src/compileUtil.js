@@ -20,6 +20,7 @@ const CompileUtil = {
     const value = expr.replace(/\{\{([^}]+)\}\}/g, (...args) => {
       // 监控文本节点里面每一个绑定的值 {{a}} {{b.c}}
       const _expr = args[1]
+      // 对于文本节点绑定的每一个表达式 都需要监控。一个发生变化，该节点dom就要更新
       new Watcher(vm, _expr, () => {
         // 如果文本节点数据变化，文本节点需要重新获取依赖的数据。否则，如果直接拿a的新值覆盖，b.c 会被覆盖
         updateFn && updateFn(node, this.helper.getTextValue(vm, expr))

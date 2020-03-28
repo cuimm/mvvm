@@ -19,9 +19,9 @@ class Watcher {
     // 初始值
     this.value = this.getValue(this.vm, this.expr)
   }
-  getValue() {
+  getValue(vm, expr) {
     Dep.target = this
-    const value = CompileUtil.helper.getValue(this.vm, this.expr)
+    const value = CompileUtil.helper.getValue(vm, expr)
     Dep.target = null
     return value
   }
