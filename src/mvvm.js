@@ -11,7 +11,6 @@ class MVVM {
       new Observer(this.$data)
       // 模版编译
       new Compile(this.$el, this)
-
       // 代理$data
       this.proxyData(this.$data)
     }
@@ -28,6 +27,6 @@ class MVVM {
       })
     })
   }
+  test() {}
 }
-
 export default MVVM

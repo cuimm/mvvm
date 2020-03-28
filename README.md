@@ -28,8 +28,3 @@ hello cuimm~~~
 
 
 - echo "se nu" >> ~/.vimrc
-
-
-
-
-
