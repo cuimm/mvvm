@@ -27,7 +27,7 @@ hello cuimm~~~
 ```
 
 
-echo "se nu" >> ~/.vimrc
+- echo "se nu" >> ~/.vimrc
 
 
 
