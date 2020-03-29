@@ -41,22 +41,17 @@
     },
     computed: {
       fullName() {
-        return this.firstName + this.secnodName
+        return `${this.secnodName}.${this.firstName}`
       },
       fullName2: {
         get() {
-          return this.firstName + this.secnodName
+          return `${this.secnodName}.${this.firstName}`
         },
         set(val) {
+          console.log('修改firstName为', val);
           this.firstName = val
         },
       },
-    },
-    mounted() {
-      setTimeout(() => {
-        console.log('等待2秒，student.age 加1');
-        this.student.age++
-      }, 2000)
     },
   })
   console.log(vm);
