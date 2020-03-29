@@ -16,7 +16,11 @@ class MVVM {
       new Compile(this.$el, this)
       // 代理$data
       this.proxyData(this.$data)
+      // 代理计算属性
       this.proxyComputed(this.computed)
+
+      // mounted 生命周期函数
+      options.mounted && options.mounted.call(this)
     }
   }
 
