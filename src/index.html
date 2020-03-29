@@ -53,6 +53,12 @@
         },
       },
     },
+    mounted() {
+      setTimeout(() => {
+        console.log('等待2秒，student.age 加1');
+        this.student.age++
+      }, 2000)
+    },
   })
   console.log(vm);
 </script>
