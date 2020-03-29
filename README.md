@@ -40,8 +40,8 @@ then
     do 
       eslint $FILE
       if [ $? != 0 ]; then
-	echo "$FILE 检查没通过"
-	PASS=false
+	    echo "$FILE 检查没通过"
+	    PASS=false
       fi
     done
 

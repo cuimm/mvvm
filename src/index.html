@@ -17,6 +17,9 @@
     <li>address: {{student.info.address}}</li>
   </ul>
   {{message}}{{student.name}}{{student.info.address}}
+  <div>
+    计算属性{{fullName}} {{fullName2}}
+  </div>
 </div>
 <!-- 浏览器还没有完全支持ES6模块，所以需要在导入模块时，在script标签中加“type = module” -->
 <script type="module">
@@ -31,6 +34,21 @@
         age: 18,
         info: {
           address: 'beijing',
+        },
+      },
+      firstName: 'cui',
+      secnodName: 'mengmeng',
+    },
+    computed: {
+      fullName() {
+        return this.firstName + this.secnodName
+      },
+      fullName2: {
+        get() {
+          return this.firstName + this.secnodName
+        },
+        set(val) {
+          this.firstName = val
         },
       },
     },
